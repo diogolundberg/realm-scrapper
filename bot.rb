@@ -3,7 +3,7 @@
 require 'discordrb'
 require_relative 'realms'
 
-bot = Discordrb::Commands::CommandBot.new(token: ENV['token'], channels: ['realm-closing'], prefix: 'scrapper ')
+bot = Discordrb::Commands::CommandBot.new(token: ENV['token'], channels: ['realm-closing'], prefix: '!')
 
 messages = []
 
