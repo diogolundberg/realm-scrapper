@@ -9,17 +9,15 @@ module Realms
     end
 
     def to_s()
-      "#{events} - Server: **#{server}**  Realm: **#{name}**(#{players}/85) #{queue}"
+      "`#{events}` - Server: **#{server}**  Realm: **#{name}**(#{players}/85) #{queue}"
     end
-
-    private
 
     def players()
       total_players > 85 ? 85 : total_players
     end
 
     def events()
-      events_left > 0 ? "`#{events_left} remaining`" : "`closed`"
+      events_left > 0 ? "#{events_left} remaining" : "closed"
     end
 
     def queue()
@@ -40,6 +38,10 @@ module Realms
       )
     end
   
-    realms.uniq(&:name).sort_by(&:events_left)
+    realms
+      .uniq{ |realm| [realm.name, realm.server] }
+      .sort_by(&:events_left)
+      .select { |realm| realm.events != "closed" }
+      .first(20)
   end
 end
