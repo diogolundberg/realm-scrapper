@@ -21,7 +21,7 @@ bot.run(true)
 
 loop do
   messages.each do |message| 
-    message.edit(Realms::scrap.join("\n"))
+    message.edit(Realms::scrap.first(10).join("\n"))
   end
   sleep 3
 end
