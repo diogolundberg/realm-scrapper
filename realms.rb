@@ -48,11 +48,12 @@ module Realms
       )
     end
   
+    return 'NOTIFIER OFFLINE!' if realms.empty?
     realms
       .uniq{ |realm| [realm.name, realm.server] }
       .sort_by(&:events_left)
       .select do |realm|
-        realm.events != "closed" && realm.age < 120 && realm.age.positive?
+        realm.events != "closed" && realm.age < 180 && realm.age.positive?
       end
   end
 end
