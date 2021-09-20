@@ -48,7 +48,6 @@ module Realms
       )
     end
   
-    return 'NOTIFIER OFFLINE!' if realms.empty?
     realms
       .uniq{ |realm| [realm.name, realm.server] }
       .sort_by(&:events_left)

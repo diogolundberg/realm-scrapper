@@ -8,7 +8,9 @@ bot = Discordrb::Commands::CommandBot.new(token: ENV['token'], channels: ['realm
 
 messages = []
 def scrap()
-  Realms::scrap.first(10).join("\n")
+  realms = Realms::scrapper
+  return 'NOTIFIER OFFLINE!' if realms.empty?
+  realms.first(10).join("\n")
 end
 
 def error(e)
