@@ -4,7 +4,7 @@ require 'discordrb'
 require 'json'
 require_relative 'realms'
 
-bot = Discordrb::Commands::CommandBot.new(token: ENV['token'], channels: ['realm-closing'], prefix: '!')
+bot = Discordrb::Commands::CommandBot.new(token: ENV['token'], channels: ['realm-closing'], prefix: 'scrapper ')
 
 messages = []
 def scrap()
