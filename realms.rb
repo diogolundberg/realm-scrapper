@@ -37,6 +37,7 @@ module Realms
 
   def self.scrap()
     response = Net::HTTP.get(URI('https://realmstock.network/Public/EventHistory'))
+
     realms = response.split("\n").map do |line|
       data = line.split('|')
       Realm.new(
@@ -47,12 +48,12 @@ module Realms
         updated_at: data[5].split(':')
       )
     end
-  
+
     realms
       .uniq{ |realm| [realm.name, realm.server] }
       .sort_by(&:events_left)
       .select do |realm|
-        realm.events != "closed" && realm.age < 180 && realm.age.positive?
+        realm.events != "closed" && realm.age < 300 && realm.age.positive?
       end
   end
 end
