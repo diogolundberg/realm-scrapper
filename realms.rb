@@ -52,8 +52,6 @@ module Realms
     realms
       .uniq{ |realm| [realm.name, realm.server] }
       .sort_by(&:events_left)
-      .select do |realm|
-        realm.events != "closed" && realm.age < 300 && realm.age.positive?
-      end
+      .select { |realm| realm.events != "closed" }
   end
 end
