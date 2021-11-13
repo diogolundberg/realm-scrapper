@@ -32,6 +32,12 @@ rescue RestClient::BadRequest => e
   error e
 end
 
+bot.command :ping do |event|
+  'pong'
+rescue RestClient::BadRequest => e
+  error e
+end
+
 bot.run(true)
 
 loop do
